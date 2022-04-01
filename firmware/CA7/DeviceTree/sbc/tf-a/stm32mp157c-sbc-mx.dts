@@ -12,19 +12,27 @@
 #include <dt-bindings/pinctrl/stm32-pinfunc.h>
 #include <dt-bindings/clock/stm32mp1-clksrc.h>
 #include <dt-bindings/soc/st,stm32-etzpc.h>
+#include "stm32mp15-mx.dtsi"
 
 #include "stm32mp157.dtsi"
 #include "stm32mp15xc.dtsi"
 #include "stm32mp15xxad-pinctrl.dtsi"
-/* !!! log : Warning - DDR not configured: unknown DDR dtsi  !!! */
-/*#include "???-ddr.dtsi"*/
+#include "stm32mp15-ddr.dtsi"
 
 /* USER CODE BEGIN includes */
 /* USER CODE END includes */
 
 / {
-	model = "STMicroelectronics custom STM32CubeMX board - openstlinux-5.10-dunfell-mp1-21-03-31";
+	model = "STMicroelectronics custom STM32CubeMX board - openstlinux-5.10-dunfell-mp1-21-11-17";
 	compatible = "st,stm32mp157c-sbc-mx", "st,stm32mp157";
+
+	memory@c0000000 {
+		device_type = "memory";
+		reg = <0xc0000000 0x40000000>;
+
+		/* USER CODE BEGIN memory */
+		/* USER CODE END memory */
+	};
 
 	/* USER CODE BEGIN root */
 	/* USER CODE END root */
@@ -49,6 +57,19 @@
 }; /*root*/
 
 &pinctrl {
+	usart1_pins_mx: usart1_mx-0 {
+		pins1 {
+			pinmux = <STM32_PINMUX('A', 9, AF7)>; /* USART1_TX */
+			bias-disable;
+			drive-push-pull;
+			slew-rate = <0>;
+		};
+		pins2 {
+			pinmux = <STM32_PINMUX('B', 7, AF7)>; /* USART1_RX */
+			bias-disable;
+		};
+	};
+
 	/* USER CODE BEGIN pinctrl */
 	/* USER CODE END pinctrl */
 };
@@ -58,7 +79,54 @@
 	/* USER CODE END pinctrl_z */
 };
 
-&rcc {
+&bsec{
+	status = "okay";
+	secure-status = "okay";
+
+	/* USER CODE BEGIN bsec */
+	/* USER CODE END bsec */
+};
+
+&etzpc{
+	secure-status = "okay";
+	st,decprot = <
+	/*"NS_R S_W" peripherals*/
+	DECPROT(STM32MP1_ETZPC_DDRCTRL_ID, DECPROT_NS_R_S_W, DECPROT_LOCK)
+	DECPROT(STM32MP1_ETZPC_DDRPHYC_ID, DECPROT_NS_R_S_W, DECPROT_LOCK)
+	/*"Non Secured" peripherals*/
+	DECPROT(STM32MP1_ETZPC_DMA1_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
+	DECPROT(STM32MP1_ETZPC_DMAMUX_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
+	DECPROT(STM32MP1_ETZPC_ETH_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
+	DECPROT(STM32MP1_ETZPC_TT_FDCAN_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
+	DECPROT(STM32MP1_ETZPC_SPI1_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
+	DECPROT(STM32MP1_ETZPC_SPI2_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
+	DECPROT(STM32MP1_ETZPC_SPI3_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
+	DECPROT(STM32MP1_ETZPC_SPI4_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
+	DECPROT(STM32MP1_ETZPC_VREFBUF_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
+	/*"Secured" peripherals*/
+	DECPROT(STM32MP1_ETZPC_USART1_ID, DECPROT_S_RW, DECPROT_UNLOCK)
+	DECPROT(STM32MP1_ETZPC_STGENC_ID, DECPROT_S_RW, DECPROT_UNLOCK)
+	/*"Mcu Isolation" peripherals*/
+	DECPROT(STM32MP1_ETZPC_DMA2_ID, DECPROT_MCU_ISOLATION, DECPROT_UNLOCK)
+	DECPROT(STM32MP1_ETZPC_USART2_ID, DECPROT_MCU_ISOLATION, DECPROT_UNLOCK)
+
+	/*Restriction: following IDs are not managed  - please to use User-Section if needed:
+		  STM32MP1_ETZPC_SRAMx_ID  STM32MP1_ETZPC_RETRAM_ID  STM32MP1_ETZPC_BKPSRAM_ID*/
+
+	/* USER CODE BEGIN etzpc_decprot */
+		/*STM32CubeMX generates a basic and standard configuration for ETZPC.
+		Additional device configurations can be added here if needed.
+		"etzpc" node could be also overloaded in "addons" User-Section.*/
+	/* USER CODE END etzpc_decprot */
+	>;
+
+	/* USER CODE BEGIN etzpc */
+	/* USER CODE END etzpc */
+};
+
+&rcc{
+	status = "okay";
+	secure-status = "okay";
 	st,csi-cal;
 	st,hsi-cal;
 	st,cal-sec = <60>;
@@ -67,7 +135,7 @@
 		CLK_AXI_HSI
 		CLK_MCU_HSI
 		CLK_PLL12_HSI
-		CLK_PLL3_HSI
+		CLK_PLL3_HSE
 		CLK_PLL4_HSI
 		CLK_RTC_LSI
 		CLK_MCO1_DISABLED
@@ -88,13 +156,13 @@
 	>;
 	st,pkcs = <
 		CLK_CKPER_DISABLED
-		CLK_ETH_DISABLED
-		CLK_SDMMC12_DISABLED
+		CLK_ETH_PLL4P
+		CLK_SDMMC12_HCLK6
 		CLK_STGEN_HSI
 		CLK_USBPHY_DISABLED
-		CLK_SPI2S1_DISABLED
-		CLK_SPI2S23_DISABLED
-		CLK_SPI45_DISABLED
+		CLK_SPI2S1_PLL4P
+		CLK_SPI2S23_PLL4P
+		CLK_SPI45_PCLK2
 		CLK_SPI6_DISABLED
 		CLK_I2C46_DISABLED
 		CLK_SDMMC3_DISABLED
@@ -102,12 +170,13 @@
 		CLK_CEC_DISABLED
 		CLK_I2C12_DISABLED
 		CLK_I2C35_DISABLED
-		CLK_UART1_DISABLED
-		CLK_UART24_DISABLED
+		CLK_UART1_PCLK5
+		CLK_UART24_PCLK1
 		CLK_UART35_DISABLED
 		CLK_UART6_DISABLED
 		CLK_UART78_DISABLED
 		CLK_SPDIF_DISABLED
+		CLK_FDCAN_HSE
 		CLK_SAI1_DISABLED
 		CLK_SAI2_DISABLED
 		CLK_SAI3_DISABLED
@@ -116,45 +185,16 @@
 		CLK_LPTIM23_DISABLED
 		CLK_LPTIM45_DISABLED
 	>;
-};
-
-&bsec{
-	status = "okay";
-	secure-status = "okay";
-
-	/* USER CODE BEGIN bsec */
-	/* USER CODE END bsec */
-};
-
-&etzpc{
-	st,decprot = <
-	/*"Non Secured" peripherals*/
-	DECPROT(STM32MP1_ETZPC_DMA1_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
-	DECPROT(STM32MP1_ETZPC_DMAMUX_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
-	/*"Secured" peripherals*/
-	DECPROT(STM32MP1_ETZPC_STGENC_ID, DECPROT_S_RW, DECPROT_UNLOCK)
-	/*"Mcu Isolation" peripherals*/
-	DECPROT(STM32MP1_ETZPC_DMA2_ID, DECPROT_MCU_ISOLATION, DECPROT_UNLOCK)
-
-	/*Restriction: following IDs are not managed  - please to use User-Section if needed:
-		STM32MP1_ETZPC_SRAMx_ID, STM32MP1_ETZPC_RETRAM_ID, STM32MP1_ETZPC_BKPSRAM_ID*/
-
-	/* USER CODE BEGIN etzpc_decprot */
-		/*STM32CubeMX generates a basic and standard configuration for ETZPC.
-		Additional device configurations can be added here if needed.
-		"etzpc" node could be also overloaded in "addons" User-Section.*/
-	/* USER CODE END etzpc_decprot */
-	>;
-
-	secure-status = "okay";
-
-	/* USER CODE BEGIN etzpc */
-	/* USER CODE END etzpc */
-};
-
-&rcc{
-	status = "okay";
-	secure-status = "okay";
+	pll2:st,pll@1 {
+		compatible = "st,stm32mp1-pll";
+		reg = <1>;
+		cfg = < 3 24 1 0 0 PQR(0,1,1) >;
+	};
+	pll4:st,pll@3 {
+		compatible = "st,stm32mp1-pll";
+		reg = <3>;
+		cfg = < 3 24 3 4 1 PQR(1,1,0) >;
+	};
 
 	/* USER CODE BEGIN rcc */
 	/* USER CODE END rcc */
@@ -174,6 +214,15 @@
 
 	/* USER CODE BEGIN tamp */
 	/* USER CODE END tamp */
+};
+
+&usart1{
+	pinctrl-names = "default";
+	pinctrl-0 = <&usart1_pins_mx>;
+	secure-status = "okay";
+
+	/* USER CODE BEGIN usart1 */
+	/* USER CODE END usart1 */
 };
 
 /* USER CODE BEGIN addons */

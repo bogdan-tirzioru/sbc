@@ -8,5 +8,5 @@
  * https://wiki.st.com/stm32mpu/wiki/Category:Device_tree_configuration
  */
 
-/* !!! log : Warning - DDR not configured: FW config not generated  !!! */
-/*#include "???-fw-config.dts"*/
+#define DDR_SIZE	0x40000000 /* 1GB */
+#include "stm32mp15-fw-config.dts"

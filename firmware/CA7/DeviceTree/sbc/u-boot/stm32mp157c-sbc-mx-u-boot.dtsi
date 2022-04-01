@@ -9,10 +9,10 @@
  */
 
 #include <dt-bindings/clock/stm32mp1-clksrc.h>
+#include "stm32mp15-mx.dtsi"
 
 #include "stm32mp15-u-boot.dtsi"
-/* !!! log : Warning - DDR not configured: unknown DDR dtsi  !!! */
-/*#include "???-ddr.dtsi"*/
+#include "stm32mp15-ddr.dtsi"
 
 /* USER CODE BEGIN includes */
 /* USER CODE END includes */
@@ -50,7 +50,6 @@
 			/* USER CODE END clk_lse */
 		};
 		clk_hse: clk-hse {
-			status = "disabled";
 
 			/* USER CODE BEGIN clk_hse */
 			/* USER CODE END clk_hse */
@@ -62,14 +61,14 @@
 
 #ifndef CONFIG_TFABOOT
 
-&rcc {
+&rcc{
 	u-boot,dm-pre-reloc;
 	st,clksrc = <
 		CLK_MPU_PLL1P
 		CLK_AXI_HSI
 		CLK_MCU_HSI
 		CLK_PLL12_HSI
-		CLK_PLL3_HSI
+		CLK_PLL3_HSE
 		CLK_PLL4_HSI
 		CLK_RTC_LSI
 		CLK_MCO1_DISABLED
@@ -90,13 +89,13 @@
 	>;
 	st,pkcs = <
 		CLK_CKPER_DISABLED
-		CLK_ETH_DISABLED
-		CLK_SDMMC12_DISABLED
+		CLK_ETH_PLL4P
+		CLK_SDMMC12_HCLK6
 		CLK_STGEN_HSI
 		CLK_USBPHY_DISABLED
-		CLK_SPI2S1_DISABLED
-		CLK_SPI2S23_DISABLED
-		CLK_SPI45_DISABLED
+		CLK_SPI2S1_PLL4P
+		CLK_SPI2S23_PLL4P
+		CLK_SPI45_PCLK2
 		CLK_SPI6_DISABLED
 		CLK_I2C46_DISABLED
 		CLK_SDMMC3_DISABLED
@@ -104,12 +103,13 @@
 		CLK_CEC_DISABLED
 		CLK_I2C12_DISABLED
 		CLK_I2C35_DISABLED
-		CLK_UART1_DISABLED
-		CLK_UART24_DISABLED
+		CLK_UART1_PCLK5
+		CLK_UART24_PCLK1
 		CLK_UART35_DISABLED
 		CLK_UART6_DISABLED
 		CLK_UART78_DISABLED
 		CLK_SPDIF_DISABLED
+		CLK_FDCAN_HSE
 		CLK_SAI1_DISABLED
 		CLK_SAI2_DISABLED
 		CLK_SAI3_DISABLED
@@ -118,6 +118,21 @@
 		CLK_LPTIM23_DISABLED
 		CLK_LPTIM45_DISABLED
 	>;
+	pll2:st,pll@1 {
+		compatible = "st,stm32mp1-pll";
+		reg = <1>;
+		cfg = < 3 24 1 0 0 PQR(0,1,1) >;
+		u-boot,dm-pre-reloc;
+	};
+	pll4:st,pll@3 {
+		compatible = "st,stm32mp1-pll";
+		reg = <3>;
+		cfg = < 3 24 3 4 1 PQR(1,1,0) >;
+		u-boot,dm-pre-reloc;
+	};
+
+	/* USER CODE BEGIN rcc */
+	/* USER CODE END rcc */
 };
 
 #endif	/*CONFIG_TFABOOT*/
