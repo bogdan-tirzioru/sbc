@@ -42,6 +42,7 @@
 		/* USER CODE END clocks */
 
 		clk_lse: clk-lse {
+			st,drive = < LSEDRV_MEDIUM_HIGH >;
 
 			/* USER CODE BEGIN clk_lse */
 			/* USER CODE END clk_lse */
@@ -57,16 +58,35 @@
 }; /*root*/
 
 &pinctrl {
+	sdmmc1_pins_mx: sdmmc1_mx-0 {
+		pins1 {
+			pinmux = <STM32_PINMUX('C', 8, AF12)>, /* SDMMC1_D0 */
+					 <STM32_PINMUX('C', 9, AF12)>, /* SDMMC1_D1 */
+					 <STM32_PINMUX('C', 11, AF12)>, /* SDMMC1_D3 */
+					 <STM32_PINMUX('D', 2, AF12)>, /* SDMMC1_CMD */
+					 <STM32_PINMUX('E', 6, AF8)>; /* SDMMC1_D2 */
+			bias-disable;
+			drive-push-pull;
+			slew-rate = <1>;
+		};
+		pins2 {
+			pinmux = <STM32_PINMUX('C', 12, AF12)>; /* SDMMC1_CK */
+			bias-disable;
+			drive-push-pull;
+			slew-rate = <3>;
+		};
+	};
+
 	usart1_pins_mx: usart1_mx-0 {
 		pins1 {
+			pinmux = <STM32_PINMUX('A', 10, AF7)>; /* USART1_RX */
+			bias-disable;
+		};
+		pins2 {
 			pinmux = <STM32_PINMUX('A', 9, AF7)>; /* USART1_TX */
 			bias-disable;
 			drive-push-pull;
 			slew-rate = <0>;
-		};
-		pins2 {
-			pinmux = <STM32_PINMUX('B', 7, AF7)>; /* USART1_RX */
-			bias-disable;
 		};
 	};
 
@@ -90,24 +110,24 @@
 &etzpc{
 	secure-status = "okay";
 	st,decprot = <
-	/*"NS_R S_W" peripherals*/
-	DECPROT(STM32MP1_ETZPC_DDRCTRL_ID, DECPROT_NS_R_S_W, DECPROT_LOCK)
-	DECPROT(STM32MP1_ETZPC_DDRPHYC_ID, DECPROT_NS_R_S_W, DECPROT_LOCK)
 	/*"Non Secured" peripherals*/
+	DECPROT(STM32MP1_ETZPC_DAC_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
 	DECPROT(STM32MP1_ETZPC_DMA1_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
 	DECPROT(STM32MP1_ETZPC_DMAMUX_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
 	DECPROT(STM32MP1_ETZPC_ETH_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
 	DECPROT(STM32MP1_ETZPC_TT_FDCAN_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
-	DECPROT(STM32MP1_ETZPC_SPI1_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
-	DECPROT(STM32MP1_ETZPC_SPI2_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
 	DECPROT(STM32MP1_ETZPC_SPI3_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
 	DECPROT(STM32MP1_ETZPC_SPI4_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
 	DECPROT(STM32MP1_ETZPC_VREFBUF_ID, DECPROT_NS_RW, DECPROT_UNLOCK)
+	/*"NS_R S_W" peripherals*/
+	DECPROT(STM32MP1_ETZPC_DDRCTRL_ID, DECPROT_NS_R_S_W, DECPROT_LOCK)
+	DECPROT(STM32MP1_ETZPC_DDRPHYC_ID, DECPROT_NS_R_S_W, DECPROT_LOCK)
 	/*"Secured" peripherals*/
 	DECPROT(STM32MP1_ETZPC_USART1_ID, DECPROT_S_RW, DECPROT_UNLOCK)
 	DECPROT(STM32MP1_ETZPC_STGENC_ID, DECPROT_S_RW, DECPROT_UNLOCK)
 	/*"Mcu Isolation" peripherals*/
 	DECPROT(STM32MP1_ETZPC_DMA2_ID, DECPROT_MCU_ISOLATION, DECPROT_UNLOCK)
+	DECPROT(STM32MP1_ETZPC_SPI2_ID, DECPROT_MCU_ISOLATION, DECPROT_UNLOCK)
 	DECPROT(STM32MP1_ETZPC_USART2_ID, DECPROT_MCU_ISOLATION, DECPROT_UNLOCK)
 
 	/*Restriction: following IDs are not managed  - please to use User-Section if needed:
@@ -132,12 +152,12 @@
 	st,cal-sec = <60>;
 	st,clksrc = <
 		CLK_MPU_PLL1P
-		CLK_AXI_HSI
-		CLK_MCU_HSI
-		CLK_PLL12_HSI
+		CLK_AXI_PLL2P
+		CLK_MCU_PLL3P
+		CLK_PLL12_HSE
 		CLK_PLL3_HSE
-		CLK_PLL4_HSI
-		CLK_RTC_LSI
+		CLK_PLL4_HSE
+		CLK_RTC_LSE
 		CLK_MCO1_DISABLED
 		CLK_MCO2_DISABLED
 	>;
@@ -145,11 +165,11 @@
 		1 		/*MPU*/
 		0 		/*AXI*/
 		0 		/*MCU*/
-		0 		/*APB1*/
-		0 		/*APB2*/
-		0 		/*APB3*/
-		0 		/*APB4*/
-		0 		/*APB5*/
+		1 		/*APB1*/
+		1 		/*APB2*/
+		1 		/*APB3*/
+		1 		/*APB4*/
+		2 		/*APB5*/
 		0 		/*RTC*/
 		0 		/*MCO1*/
 		0 		/*MCO2*/
@@ -158,9 +178,10 @@
 		CLK_CKPER_DISABLED
 		CLK_ETH_PLL4P
 		CLK_SDMMC12_HCLK6
+		CLK_DSI_DSIPLL
 		CLK_STGEN_HSI
 		CLK_USBPHY_DISABLED
-		CLK_SPI2S1_PLL4P
+		CLK_SPI2S1_DISABLED
 		CLK_SPI2S23_PLL4P
 		CLK_SPI45_PCLK2
 		CLK_SPI6_DISABLED
@@ -188,12 +209,17 @@
 	pll2:st,pll@1 {
 		compatible = "st,stm32mp1-pll";
 		reg = <1>;
-		cfg = < 3 24 1 0 0 PQR(0,1,1) >;
+		cfg = < 0 49 1 0 0 PQR(1,1,1) >;
+	};
+	pll3:st,pll@2 {
+		compatible = "st,stm32mp1-pll";
+		reg = <2>;
+		cfg = < 0 49 1 1 1 PQR(1,0,0) >;
 	};
 	pll4:st,pll@3 {
 		compatible = "st,stm32mp1-pll";
 		reg = <3>;
-		cfg = < 3 24 3 4 1 PQR(1,1,0) >;
+		cfg = < 0 49 3 4 1 PQR(1,1,0) >;
 	};
 
 	/* USER CODE BEGIN rcc */
@@ -206,6 +232,15 @@
 
 	/* USER CODE BEGIN rtc */
 	/* USER CODE END rtc */
+};
+
+&sdmmc1{
+	pinctrl-names = "default";
+	pinctrl-0 = <&sdmmc1_pins_mx>;
+	status = "okay";
+
+	/* USER CODE BEGIN sdmmc1 */
+	/* USER CODE END sdmmc1 */
 };
 
 &tamp{
