@@ -1,0 +1,11 @@
+
+setenv bootargs console=ttyO0,115200n8
+setenv bootargs console=ttyO0,115200n8 root=/dev/mmcblk1p1
+bootz 0x80200000 - 0x80f00000
+
+fatload mmc 0:1 0x80200000 zImage
+fatload mmc 0:1 0x80f00000 am335x-boneblack.dtb
+fatload mmc 0:1 0x81000000 uRamdisk
+setenv bootargs console=ttyO0,115200n8 rdinit=/bin/sh
+setenv bootargs console=ttyO0,115200n8 rdinit=/sbin/init
+bootz 0x80200000 0x81000000 0x80f00000
