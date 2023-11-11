@@ -403,13 +403,8 @@ Mcu.PinsNb=133
 Mcu.ThirdPartyNb=0
 Mcu.UserConstants=
 Mcu.UserName=STM32MP157CADx
-<<<<<<< Updated upstream
 MxCube.Version=6.9.2
 MxDb.Version=DB.6.0.92
-=======
-MxCube.Version=6.8.1
-MxDb.Version=DB.6.0.81
->>>>>>> Stashed changes
 NJTRST.Mode=JTAG_5_pins
 NJTRST.Signal=DEBUG_JTRST
 NVIC.BusFault_IRQn=true\:1\:0\:false\:false\:true\:false\:false\:false

@@ -8,11 +8,6 @@
  * https://wiki.st.com/stm32mpu/wiki/Category:Device_tree_configuration
  */
 
-<<<<<<< Updated upstream
-=======
-#include "stm32mp15-u-boot.dtsi"
-
->>>>>>> Stashed changes
 /* USER CODE BEGIN includes */
 /* USER CODE END includes */
 
