@@ -1,0 +1,6 @@
+#init yocto
+source poky/oe-init-build-env build-rpi
+#
+
+bitbake core-image-base
+bitbake-layers show-recipes alsa
