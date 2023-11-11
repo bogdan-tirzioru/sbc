@@ -61,7 +61,7 @@
 			clock-frequency = <32768>;
 		};
 		clk_hse: clk-hse {
-			clock-frequency = <16000000>;
+			clock-frequency = <8000000>;
 		};
 #endif	/*CONFIG_TFABOOT*/
 	};

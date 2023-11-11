@@ -40,7 +40,7 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
- IPCC_HandleTypeDef hipcc;
+IPCC_HandleTypeDef hipcc;
 
 SPI_HandleTypeDef hspi2;
 
@@ -92,7 +92,7 @@ int main(void)
   else
   {
     /* IPCC initialisation */
-     MX_IPCC_Init();
+    MX_IPCC_Init();
   }
 
   /* USER CODE BEGIN SysInit */
@@ -140,7 +140,6 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.LSEState = RCC_LSE_ON;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = 16;
   RCC_OscInitStruct.HSIDivValue = RCC_HSI_DIV1;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
   RCC_OscInitStruct.PLL2.PLLState = RCC_PLL_ON;
@@ -332,6 +331,8 @@ static void MX_USART2_UART_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+/* USER CODE BEGIN MX_GPIO_Init_1 */
+/* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOD_CLK_ENABLE();
@@ -340,6 +341,8 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
+/* USER CODE BEGIN MX_GPIO_Init_2 */
+/* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
