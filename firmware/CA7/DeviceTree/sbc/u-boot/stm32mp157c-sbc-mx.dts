@@ -1,6 +1,6 @@
-/* SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause) */
+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-3-Clause)
 /*
- * Copyright (C) STMicroelectronics 2023 - All Rights Reserved
+ * Copyright (C) 2023, STMicroelectronics - All Rights Reserved
  * Author: STM32CubeMX code generation for STMicroelectronics.
  */
 
@@ -20,7 +20,7 @@
 /* USER CODE END includes */
 
 / {
-	model = "STMicroelectronics custom STM32CubeMX board - openstlinux-5.15-yocto-kirkstone-mp1-v22.11.23";
+	model = "STMicroelectronics custom STM32CubeMX board - openstlinux-6.1-yocto-mickledore-mp1-v23.06.21";
 	compatible = "st,stm32mp157c-sbc-mx", "st,stm32mp157";
 
 	memory@c0000000 {
@@ -43,7 +43,7 @@
 	/* USER CODE BEGIN root */
 	/* USER CODE END root */
 
-	clocks {
+	clocks{
 
 		/* USER CODE BEGIN clocks */
 		/* USER CODE END clocks */
