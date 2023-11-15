@@ -20,7 +20,7 @@ while True:
         GPIO.output(pinnr1,GPIO.HIGH)
         GPIO.output(pinnr2,GPIO.LOW)
         print("led on , button pushed")
-        subprocess.run(["ffplay","-nodisp","-t","15","-ss","40","-autoexit","FinalCountdown.mp3"])
+        subprocess.run(["ffplay","-loglevel","error","-nodisp","-t","15","-ss","40","-autoexit","FinalCountdown.mp3"])
     else:
         GPIO.output(pinnr1,GPIO.LOW)  
         GPIO.output(pinnr2,GPIO.HIGH)
