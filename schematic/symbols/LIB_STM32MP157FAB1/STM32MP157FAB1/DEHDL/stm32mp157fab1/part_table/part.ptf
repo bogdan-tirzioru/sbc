@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'STM32MP157FAB1'
+CLASS = IC
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "STMicroelectronics", "STM32MP157FAB1" (!) = "", "BGA354C80P19X19_1600X1600X129", "BGA", "511-STM32MP157FAB1", "https://www.mouser.co.uk/ProductDetail/STMicroelectronics/STM32MP157FAB1?qs=xZ%2FP%252Ba9zWqaMNhk4KMq8KA%3D%3D", "32-bit Microcontrollers - MCU 16/32-BITS MICROS", "https://www.st.com/resource/en/datasheet/stm32mp157f.pdf", "1.29 mm"
+END_PART
+
+END.

@@ -1,0 +1,13 @@
+(unit MM)
+
+(package "STM32MP157FAB1"
+    (type UNDEF)
+    (uver 2)
+    (cuser "SamacSys")
+    (uuser "SamacSys")
+    (utime 2019-12-18-09:26:52)
+    (mountForm default
+        (footprintRef "BGA354C80P19X19_1600X1600X129")
+        (spec "System")
+    )
+)

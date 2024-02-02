@@ -1,0 +1,9 @@
+Manufacturer=STMicroelectronics
+PartNumber=STM32MP157FAB1
+PartCategory=Integrated Circuit
+PackageCategory=BGA
+PinCount=354
+Version=1.1
+Released=2020-11-04 17:49:54
+Downloaded=2024-01-14 07:00:25
+3D=Y

@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP STM32MP157FAB1
+D 32-bit Microcontrollers - MCU 16/32-BITS MICROS
+K
+F https://www.st.com/resource/en/datasheet/stm32mp157f.pdf
+$ENDCMP
+#
+#End Doc Library
