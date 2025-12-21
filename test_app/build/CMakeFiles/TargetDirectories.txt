@@ -1,0 +1,5 @@
+/home/ghita/fast_disk/gitrepo/sbc/test_app/build/CMakeFiles/HelloGDBProject.dir
+/home/ghita/fast_disk/gitrepo/sbc/test_app/build/CMakeFiles/build.dir
+/home/ghita/fast_disk/gitrepo/sbc/test_app/build/CMakeFiles/build_and_debug.dir
+/home/ghita/fast_disk/gitrepo/sbc/test_app/build/CMakeFiles/edit_cache.dir
+/home/ghita/fast_disk/gitrepo/sbc/test_app/build/CMakeFiles/rebuild_cache.dir

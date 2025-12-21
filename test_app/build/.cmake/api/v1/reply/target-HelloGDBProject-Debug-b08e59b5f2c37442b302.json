@@ -1,0 +1,99 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "HelloGDBProject"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 11,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " -mcpu=cortex-A8 -Og -pipe -g --sysroot=/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/usr/arm-buildroot-linux-gnueabihf/sysroot -g"
+				}
+			],
+			"language" : "C",
+			"sourceIndexes" : 
+			[
+				0
+			],
+			"sysroot" : 
+			{
+				"path" : "/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/usr/arm-buildroot-linux-gnueabihf/sysroot"
+			}
+		}
+	],
+	"id" : "HelloGDBProject::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-mcpu=cortex-A8 -Og -pipe -g --sysroot=/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/usr/arm-buildroot-linux-gnueabihf/sysroot -g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "--sysroot=/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/usr/arm-buildroot-linux-gnueabihf/sysroot",
+				"role" : "flags"
+			}
+		],
+		"language" : "C",
+		"sysroot" : 
+		{
+			"path" : "/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/usr/arm-buildroot-linux-gnueabihf/sysroot"
+		}
+	},
+	"name" : "HelloGDBProject",
+	"nameOnDisk" : "HelloGDBProject",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/main.c",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

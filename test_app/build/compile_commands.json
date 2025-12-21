@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/ghita/fast_disk/gitrepo/sbc/test_app/build",
+  "command": "/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/bin/arm-buildroot-linux-gnueabihf-gcc --sysroot=/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/usr/arm-buildroot-linux-gnueabihf/sysroot  -mcpu=cortex-A8 -Og -pipe -g --sysroot=/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/usr/arm-buildroot-linux-gnueabihf/sysroot -g -o CMakeFiles/HelloGDBProject.dir/src/main.c.o -c /home/ghita/fast_disk/gitrepo/sbc/test_app/src/main.c",
+  "file": "/home/ghita/fast_disk/gitrepo/sbc/test_app/src/main.c"
+}
+]

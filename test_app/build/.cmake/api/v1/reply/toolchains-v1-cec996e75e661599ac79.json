@@ -1,0 +1,105 @@
+{
+	"kind" : "toolchains",
+	"toolchains" : 
+	[
+		{
+			"compiler" : 
+			{
+				"id" : "GNU",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/lib/gcc/arm-buildroot-linux-gnueabihf/12.3.0/include",
+						"/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/lib/gcc/arm-buildroot-linux-gnueabihf/12.3.0/include-fixed",
+						"/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/arm-buildroot-linux-gnueabihf/include",
+						"/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include"
+					],
+					"linkDirectories" : 
+					[
+						"/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/lib/gcc/arm-buildroot-linux-gnueabihf/12.3.0",
+						"/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/arm-buildroot-linux-gnueabihf/lib",
+						"/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/usr/arm-buildroot-linux-gnueabihf/sysroot/lib",
+						"/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/lib"
+					],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : 
+					[
+						"gcc",
+						"gcc_s",
+						"c",
+						"gcc",
+						"gcc_s"
+					]
+				},
+				"path" : "/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/bin/arm-buildroot-linux-gnueabihf-gcc",
+				"version" : "12.3.0"
+			},
+			"language" : "C",
+			"sourceFileExtensions" : 
+			[
+				"c",
+				"m"
+			]
+		},
+		{
+			"compiler" : 
+			{
+				"id" : "GNU",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/arm-buildroot-linux-gnueabihf/include/c++/12.3.0",
+						"/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/arm-buildroot-linux-gnueabihf/include/c++/12.3.0/arm-buildroot-linux-gnueabihf",
+						"/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/arm-buildroot-linux-gnueabihf/include/c++/12.3.0/backward",
+						"/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/lib/gcc/arm-buildroot-linux-gnueabihf/12.3.0/include",
+						"/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/lib/gcc/arm-buildroot-linux-gnueabihf/12.3.0/include-fixed",
+						"/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/arm-buildroot-linux-gnueabihf/include",
+						"/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/include"
+					],
+					"linkDirectories" : 
+					[
+						"/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/lib/gcc/arm-buildroot-linux-gnueabihf/12.3.0",
+						"/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/arm-buildroot-linux-gnueabihf/lib",
+						"/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/usr/arm-buildroot-linux-gnueabihf/sysroot/lib",
+						"/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/usr/arm-buildroot-linux-gnueabihf/sysroot/usr/lib"
+					],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : 
+					[
+						"stdc++",
+						"m",
+						"gcc_s",
+						"gcc",
+						"c",
+						"gcc_s",
+						"gcc"
+					]
+				},
+				"path" : "/home/ghita/fast_disk/beaglebuildroot/buildroot/output/host/bin/arm-buildroot-linux-gnueabihf-g++",
+				"version" : "12.3.0"
+			},
+			"language" : "CXX",
+			"sourceFileExtensions" : 
+			[
+				"C",
+				"M",
+				"c++",
+				"cc",
+				"cpp",
+				"cxx",
+				"mm",
+				"mpp",
+				"CPP",
+				"ixx",
+				"cppm"
+			]
+		}
+	],
+	"version" : 
+	{
+		"major" : 1,
+		"minor" : 0
+	}
+}
