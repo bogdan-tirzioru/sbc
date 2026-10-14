@@ -13,7 +13,7 @@ The project covers the design and bring-up of a complete single-board computer, 
 - Cortex-M4 firmware and its integration with Linux where useful.
 - V1 board-level interfaces for basic Linux computer use:
   - **Four USB-A host ports** for keyboard, mouse, and other peripherals, using the STM32MP157 Discovery-kit design as a reference and adding a USB hub if needed.
-  - **HDMI output with audio** through the LTDC and SiI9022A transmitter. VGA is deferred.
+  - **HDMI output with audio** through the LTDC and SiI9022A transmitter, targeting **1280 × 720 at 60 Hz**. Higher display modes are not required for V1. VGA is deferred.
   - **UART** with 3.3 V TTL signaling for the serial console and development access.
   - **One 10/100 Ethernet RJ45 port** using an external PHY over RMII. Gigabit throughput is not required.
   - **One microSD card slot** for Linux boot and removable file storage. Separate eMMC or NAND storage is deferred.
@@ -24,7 +24,7 @@ The V1 usability goal is to boot Linux from microSD, accept a USB keyboard and m
 
 ### Scope boundaries and open design decisions
 
-The V1 scope is deliberately limited to one HDMI display path, four USB-A host ports, RMII 10/100 Ethernet, UART, and microSD boot/storage. VGA, additional USB expansion beyond four ports, separate analog audio out, USB-C OTG, and separate eMMC or NAND storage are deferred. Display timings, HDMI audio configuration, exact Ethernet PHY, USB port power implementation, and enclosure remain to be specified. These should be recorded in the hardware requirements as the design is refined.
+The V1 scope is deliberately limited to one HDMI display path, four USB-A host ports, RMII 10/100 Ethernet, UART, and microSD boot/storage. VGA, additional USB expansion beyond four ports, separate analog audio out, USB-C OTG, and separate eMMC or NAND storage are deferred. HDMI audio configuration, exact Ethernet PHY, USB port power implementation, and enclosure remain to be specified. The V1 HDMI display target is 1280 × 720 at 60 Hz. These should be recorded in the hardware requirements as the design is refined.
 
 Earlier BeagleBone Black, Buildroot, Bluetooth study, and test application files remain in the repository as project history or learning material; they are not all part of the target SBC's required feature set.
 
