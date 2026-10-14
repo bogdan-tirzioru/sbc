@@ -78,7 +78,7 @@ There is no repository-wide build script or validated, end-to-end setup guide ye
 
 ## Linux game and demo targets
 
-The board should be able to launch interactive applications from Linux. These games are software validation and demonstration targets; they do not add hardware requirements.
+The board should run existing Linux applications. These games are software validation and demonstration targets; they do not add hardware requirements. The goal is to use existing open-source game software and ports, installing a compatible package or building the existing upstream source for ARM as needed. Writing a new game port or modifying a game engine is not a V1 goal.
 
 - **Snake:** first simple full-screen test for display and keyboard input.
 - **Chess:** test a graphical application with keyboard/mouse input and an optional chess engine.
