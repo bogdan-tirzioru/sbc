@@ -76,6 +76,17 @@ The device-tree sources currently identify an OpenSTLinux Mickledore / Linux 6.1
 
 There is no repository-wide build script or validated, end-to-end setup guide yet. The commands in `test_app/CMakeLists.txt` also contain a development-machine IP address and are not a general deployment configuration.
 
+## Linux game and demo targets
+
+The board should be able to launch interactive applications from Linux. These games are software validation and demonstration targets; they do not add hardware requirements.
+
+- **Snake:** first simple full-screen test for display and keyboard input.
+- **Chess:** test a graphical application with keyboard/mouse input and an optional chess engine.
+- **Freeciv** and **OpenTTD:** follow-on strategy and simulation games to evaluate after basic graphics and input are stable.
+- **Classic DOOM (DOOM 1):** aspirational V1 demonstration. It has been made playable on an STM32MP157F-DK2, but our custom HDMI path and software image will need their own bring-up and testing.
+
+Game data files and Linux package availability will be checked when implementing each target. The initial goal is to launch the application, interact with it, and confirm that configuration or save data can be stored on microSD where supported.
+
 ## Current status
 
 This is an evolving engineering and learning project. The repository contains a board schematic project, custom device-tree sources, and a generated Cortex-M4 firmware skeleton, alongside older experiments and reference material. A successful build or hardware validation should be treated as specific to the configuration and board revision tested; it is not implied by the presence of source files.
