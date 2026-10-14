@@ -11,20 +11,20 @@ The project covers the design and bring-up of a complete single-board computer, 
 - The STM32MP157C processor, external memory, power, boot and storage hardware, including an SD card slot for removable storage.
 - Linux boot support for the Cortex-A7, including the required bootloader and device-tree configuration.
 - Cortex-M4 firmware and its integration with Linux where useful.
-- Board-level interfaces required for everyday computer use:
-  - **Four USB-A host ports** for a standard USB keyboard and mouse, plus other peripherals. The four-port arrangement follows the STM32MP157 Discovery board as a reference; the hub topology and port power circuitry remain to be designed.
-  - **Display output** for an external screen. The primary path is HDMI using the LTDC and a SiI9022A transmitter. The secondary path is analog VGA using the LTDC and a THS8136 DAC.
-  - **UART** with 3.3 V TTL signaling for serial console and development access.
-  - **Wired Ethernet** through one RJ45 port using an RGMII-connected external PHY. The interface is Gigabit-capable, but 1 Gbit/s throughput is not a project requirement; the PHY and link may negotiate a lower supported speed.
-  - **HDMI audio** carried with the display signal through the SiI9022A. The STM32MP157 must provide the transmitter with a digital audio stream, and Linux audio routing must be configured.
-  - **SD card slot** for removable storage and file transfer. The card form factor and whether the card is used for boot, data storage, or both remain to be decided.
+- V1 board-level interfaces for basic Linux computer use:
+  - **Two USB-A host ports** for a keyboard and mouse. Four-port USB expansion is deferred.
+  - **HDMI output with audio** through the LTDC and SiI9022A transmitter. VGA is deferred.
+  - **UART** with 3.3 V TTL signaling for the serial console and development access.
+  - **One 10/100 Ethernet RJ45 port** using an external PHY over RMII. Gigabit throughput is not required.
+  - **One microSD card slot** for Linux boot and removable file storage. Separate eMMC or NAND storage is deferred.
+- The Cortex-M4 remains available in the STM32MP157 but is not required for V1 Linux bring-up.
 - Board validation and software bring-up for these functions.
 
-The initial usability goal is that the board can boot Linux, accept input from a USB keyboard and mouse, drive an external screen, provide a 3.3 V TTL UART console, connect to wired Ethernet, provide analog audio out, expose four usable USB-A host ports, and access removable storage through an SD card.
+The V1 usability goal is to boot Linux from microSD, accept a USB keyboard and mouse, drive an HDMI display with audio, provide a 3.3 V TTL UART console, connect to 10/100 wired Ethernet, and expose two USB-A host ports.
 
 ### Scope boundaries and open design decisions
 
-This scope defines the required user-facing capabilities, not the final implementation of every interface. The primary display path is HDMI through the SiI9022A; VGA through the THS8136 is the secondary option. Supported display timings and resolution, HDMI audio format and channel configuration, USB hub topology and per-port power design, exact Ethernet PHY selection, whether to include a separate USB-C OTG connector, SD card form factor and boot/data role, other storage arrangement, and enclosure remain to be specified. These should be recorded in the hardware requirements as the design is refined.
+The V1 scope is deliberately limited to one HDMI display path, two USB-A host ports, RMII 10/100 Ethernet, UART, and microSD boot/storage. VGA, four-port USB expansion, separate analog audio out, USB-C OTG, and separate eMMC or NAND storage are deferred. Display timings, HDMI audio configuration, exact Ethernet PHY, USB port power implementation, and enclosure remain to be specified. These should be recorded in the hardware requirements as the design is refined.
 
 Earlier BeagleBone Black, Buildroot, Bluetooth study, and test application files remain in the repository as project history or learning material; they are not all part of the target SBC's required feature set.
 
