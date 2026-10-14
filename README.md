@@ -12,7 +12,7 @@ The project covers the design and bring-up of a complete single-board computer, 
 - Linux boot support for the Cortex-A7, including the required bootloader and device-tree configuration.
 - Cortex-M4 firmware and its integration with Linux where useful.
 - V1 board-level interfaces for basic Linux computer use:
-  - **Two USB-A host ports** for a keyboard and mouse. Four-port USB expansion is deferred.
+  - **Four USB-A host ports** for keyboard, mouse, and other peripherals, using the STM32MP157 Discovery-kit design as a reference and adding a USB hub if needed.
   - **HDMI output with audio** through the LTDC and SiI9022A transmitter. VGA is deferred.
   - **UART** with 3.3 V TTL signaling for the serial console and development access.
   - **One 10/100 Ethernet RJ45 port** using an external PHY over RMII. Gigabit throughput is not required.
@@ -20,11 +20,11 @@ The project covers the design and bring-up of a complete single-board computer, 
 - The Cortex-M4 remains available in the STM32MP157 but is not required for V1 Linux bring-up.
 - Board validation and software bring-up for these functions.
 
-The V1 usability goal is to boot Linux from microSD, accept a USB keyboard and mouse, drive an HDMI display with audio, provide a 3.3 V TTL UART console, connect to 10/100 wired Ethernet, and expose two USB-A host ports.
+The V1 usability goal is to boot Linux from microSD, accept a USB keyboard and mouse, drive an HDMI display with audio, provide a 3.3 V TTL UART console, connect to 10/100 wired Ethernet, and expose four USB-A host ports.
 
 ### Scope boundaries and open design decisions
 
-The V1 scope is deliberately limited to one HDMI display path, two USB-A host ports, RMII 10/100 Ethernet, UART, and microSD boot/storage. VGA, four-port USB expansion, separate analog audio out, USB-C OTG, and separate eMMC or NAND storage are deferred. Display timings, HDMI audio configuration, exact Ethernet PHY, USB port power implementation, and enclosure remain to be specified. These should be recorded in the hardware requirements as the design is refined.
+The V1 scope is deliberately limited to one HDMI display path, four USB-A host ports, RMII 10/100 Ethernet, UART, and microSD boot/storage. VGA, additional USB expansion beyond four ports, separate analog audio out, USB-C OTG, and separate eMMC or NAND storage are deferred. Display timings, HDMI audio configuration, exact Ethernet PHY, USB port power implementation, and enclosure remain to be specified. These should be recorded in the hardware requirements as the design is refined.
 
 Earlier BeagleBone Black, Buildroot, Bluetooth study, and test application files remain in the repository as project history or learning material; they are not all part of the target SBC's required feature set.
 
@@ -33,6 +33,10 @@ Earlier BeagleBone Black, Buildroot, Bluetooth study, and test application files
 The current board files identify the design as an STM32MP157C custom board. The device trees describe **1 GiB of DDR3L** using the Micron MT41K512M16VRP-107 memory device. The repository also contains an Altium project and component references for the board.
 
 These files are design work in progress. The SiI9022A HDMI path is the primary display choice, with THS8136 VGA as the secondary path. Their presence in the repository does not mean either path is routed, tested, or supported by the current firmware.
+
+## SOMs as design references
+
+STM32MP157-based Systems on Module (SOMs), including the PHYTEC phyCORE-STM32MP15x, are retained as engineering references. We can study their validated processor, DDR, power, boot, display, USB, Ethernet, and Linux-support choices and reuse proven design practices. V1 remains a custom SBC: the STM32MP157C processor and DDR3L memory stay on our own board; a SOM is not the compute module for V1.
 
 ## Repository map
 
