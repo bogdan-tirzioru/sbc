@@ -15,7 +15,7 @@ The project covers the design and bring-up of a complete single-board computer, 
   - **Four USB-A host ports** for a standard USB keyboard and mouse, plus other peripherals. The four-port arrangement follows the STM32MP157 Discovery board as a reference; the hub topology and port power circuitry remain to be designed.
   - **Display output** for an external screen. The primary path is HDMI using the LTDC and a SiI9022A transmitter. The secondary path is analog VGA using the LTDC and a THS8136 DAC.
   - **UART** with 3.3 V TTL signaling for serial console and development access.
-  - **Wired Ethernet** for network connectivity, using a conventional Ethernet interface. The link speed and connector implementation are to be confirmed against the board design.
+  - **Wired Ethernet** through one RJ45 port using an RGMII-connected external PHY. The interface is Gigabit-capable, but 1 Gbit/s throughput is not a project requirement; the PHY and link may negotiate a lower supported speed.
   - **HDMI audio** carried with the display signal through the SiI9022A. The STM32MP157 must provide the transmitter with a digital audio stream, and Linux audio routing must be configured.
   - **SD card slot** for removable storage and file transfer. The card form factor and whether the card is used for boot, data storage, or both remain to be decided.
 - Board validation and software bring-up for these functions.
@@ -24,7 +24,7 @@ The initial usability goal is that the board can boot Linux, accept input from a
 
 ### Scope boundaries and open design decisions
 
-This scope defines the required user-facing capabilities, not the final implementation of every interface. The primary display path is HDMI through the SiI9022A; VGA through the THS8136 is the secondary option. Supported display timings and resolution, Ethernet link speed, HDMI audio format and channel configuration, USB hub topology and per-port power design, whether to include a separate USB-C OTG connector, SD card form factor and boot/data role, other storage arrangement, and enclosure remain to be specified. These should be recorded in the hardware requirements as the design is refined.
+This scope defines the required user-facing capabilities, not the final implementation of every interface. The primary display path is HDMI through the SiI9022A; VGA through the THS8136 is the secondary option. Supported display timings and resolution, HDMI audio format and channel configuration, USB hub topology and per-port power design, exact Ethernet PHY selection, whether to include a separate USB-C OTG connector, SD card form factor and boot/data role, other storage arrangement, and enclosure remain to be specified. These should be recorded in the hardware requirements as the design is refined.
 
 Earlier BeagleBone Black, Buildroot, Bluetooth study, and test application files remain in the repository as project history or learning material; they are not all part of the target SBC's required feature set.
 
