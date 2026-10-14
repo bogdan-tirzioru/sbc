@@ -8,7 +8,7 @@ The repository is experimental and combines the current STM32MP157 SBC work with
 
 The project covers the design and bring-up of a complete single-board computer, including:
 
-- The STM32MP157C processor, external memory, power, boot and storage hardware.
+- The STM32MP157C processor, external memory, power, boot and storage hardware, including an SD card slot for removable storage.
 - Linux boot support for the Cortex-A7, including the required bootloader and device-tree configuration.
 - Cortex-M4 firmware and its integration with Linux where useful.
 - Board-level interfaces required for everyday computer use:
@@ -17,13 +17,14 @@ The project covers the design and bring-up of a complete single-board computer, 
   - **UART** with 3.3 V TTL signaling for serial console and development access.
   - **Wired Ethernet** for network connectivity, using a conventional Ethernet interface. The link speed and connector implementation are to be confirmed against the board design.
   - **HDMI audio** carried with the display signal through the SiI9022A. The STM32MP157 must provide the transmitter with a digital audio stream, and Linux audio routing must be configured.
+  - **SD card slot** for removable storage and file transfer. The card form factor and whether the card is used for boot, data storage, or both remain to be decided.
 - Board validation and software bring-up for these functions.
 
-The initial usability goal is that the board can boot Linux, accept input from a USB keyboard and mouse, drive an external screen, provide a 3.3 V TTL UART console, connect to wired Ethernet, provide analog audio out, and expose four usable USB-A host ports.
+The initial usability goal is that the board can boot Linux, accept input from a USB keyboard and mouse, drive an external screen, provide a 3.3 V TTL UART console, connect to wired Ethernet, provide analog audio out, expose four usable USB-A host ports, and access removable storage through an SD card.
 
 ### Scope boundaries and open design decisions
 
-This scope defines the required user-facing capabilities, not the final implementation of every interface. The primary display path is HDMI through the SiI9022A; VGA through the THS8136 is the secondary option. Supported display timings and resolution, Ethernet link speed, HDMI audio format and channel configuration, USB hub topology and per-port power design, whether to include a separate USB-C OTG connector, storage arrangement, and enclosure remain to be specified. These should be recorded in the hardware requirements as the design is refined.
+This scope defines the required user-facing capabilities, not the final implementation of every interface. The primary display path is HDMI through the SiI9022A; VGA through the THS8136 is the secondary option. Supported display timings and resolution, Ethernet link speed, HDMI audio format and channel configuration, USB hub topology and per-port power design, whether to include a separate USB-C OTG connector, SD card form factor and boot/data role, other storage arrangement, and enclosure remain to be specified. These should be recorded in the hardware requirements as the design is refined.
 
 Earlier BeagleBone Black, Buildroot, Bluetooth study, and test application files remain in the repository as project history or learning material; they are not all part of the target SBC's required feature set.
 
