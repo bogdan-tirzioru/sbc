@@ -13,7 +13,7 @@ The project covers the design and bring-up of a complete single-board computer, 
 - Cortex-M4 firmware and its integration with Linux where useful.
 - Board-level interfaces required for everyday computer use:
   - **USB host ports** for a standard USB keyboard and mouse, plus other peripherals. More than one USB port is required; the final port count and connector arrangement are to be decided.
-  - **Display output** for an external screen. Connector, supported resolution, and display interface are to be decided.
+  - **Display output** for an external screen. The primary path is HDMI using the LTDC and a SiI9022A transmitter. The secondary path is analog VGA using the LTDC and a THS8136 DAC.
   - **UART** with 3.3 V TTL signaling for serial console and development access.
   - **Wired Ethernet** for network connectivity, using a conventional Ethernet interface. The link speed and connector implementation are to be confirmed against the board design.
   - **Analog audio output** for connecting headphones, speakers, or other audio equipment. The output connector and electrical details are to be decided.
@@ -23,7 +23,7 @@ The initial usability goal is that the board can boot Linux, accept input from a
 
 ### Scope boundaries and open design decisions
 
-This scope defines the required user-facing capabilities, not the final implementation of every interface. The display standard and resolution, Ethernet link speed, audio codec and connector, USB port count and connector types, storage arrangement, and enclosure are not fixed here. These should be recorded in the hardware requirements as the design is refined.
+This scope defines the required user-facing capabilities, not the final implementation of every interface. The primary display path is HDMI through the SiI9022A; VGA through the THS8136 is the secondary option. Supported display timings and resolution, Ethernet link speed, audio codec and connector, USB port count and connector types, storage arrangement, and enclosure remain to be specified. These should be recorded in the hardware requirements as the design is refined.
 
 Earlier BeagleBone Black, Buildroot, Bluetooth study, and test application files remain in the repository as project history or learning material; they are not all part of the target SBC's required feature set.
 
@@ -31,7 +31,7 @@ Earlier BeagleBone Black, Buildroot, Bluetooth study, and test application files
 
 The current board files identify the design as an STM32MP157C custom board. The device trees describe **1 GiB of DDR3L** using the Micron MT41K512M16VRP-107 memory device. The repository also contains an Altium project and component references for the board.
 
-These files are design work in progress. Their presence does not mean that every interface is routed, tested, or supported by the current firmware.
+These files are design work in progress. The SiI9022A HDMI path is the primary display choice, with THS8136 VGA as the secondary path. Their presence in the repository does not mean either path is routed, tested, or supported by the current firmware.
 
 ## Repository map
 
