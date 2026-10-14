@@ -1,6 +1,6 @@
 # STM32MP157 Single-Board Computer
 
-This repository contains the hardware design and software experiments for a custom single-board computer based on the **STM32MP157C**. The goal is to develop a practical ARM computer that boots Linux and can be used with standard peripherals: a USB keyboard, an external screen, a UART connection, wired networking, sound output, and multiple USB ports.
+This repository contains the hardware design and software experiments for a custom single-board computer based on the **STM32MP157C**. The goal is to develop a practical ARM computer that boots Linux and can be used with standard peripherals: a USB keyboard and mouse, an external screen, a 3.3 V TTL UART, wired Ethernet, analog audio output, and multiple USB ports.
 
 The repository is experimental and combines the current STM32MP157 SBC work with earlier BeagleBone Black and Buildroot experiments. It is not yet a turnkey board support package or a production-ready design.
 
@@ -12,18 +12,18 @@ The project covers the design and bring-up of a complete single-board computer, 
 - Linux boot support for the Cortex-A7, including the required bootloader and device-tree configuration.
 - Cortex-M4 firmware and its integration with Linux where useful.
 - Board-level interfaces required for everyday computer use:
-  - **USB host ports** for a standard USB keyboard and other peripherals. More than one USB port is required; the final port count and connector arrangement are to be decided.
+  - **USB host ports** for a standard USB keyboard and mouse, plus other peripherals. More than one USB port is required; the final port count and connector arrangement are to be decided.
   - **Display output** for an external screen. Connector, supported resolution, and display interface are to be decided.
-  - **UART** for serial console and development access.
-  - **Wired Ethernet** for network connectivity. The final speed and connector implementation are to be decided.
-  - **Sound output** for connecting audio equipment. The output format and connector are to be decided.
+  - **UART** with 3.3 V TTL signaling for serial console and development access.
+  - **Wired Ethernet** for network connectivity, using a conventional Ethernet interface. The link speed and connector implementation are to be confirmed against the board design.
+  - **Analog audio output** for connecting headphones, speakers, or other audio equipment. The output connector and electrical details are to be decided.
 - Board validation and software bring-up for these functions.
 
-The initial usability goal is that the board can boot Linux, accept input from a USB keyboard, drive an external screen, provide a serial UART console, connect to a wired network, produce sound, and expose multiple usable USB ports.
+The initial usability goal is that the board can boot Linux, accept input from a USB keyboard and mouse, drive an external screen, provide a 3.3 V TTL UART console, connect to wired Ethernet, provide analog audio out, and expose multiple usable USB ports.
 
 ### Scope boundaries and open design decisions
 
-This scope defines the required user-facing capabilities, not the final implementation of every interface. The display standard and resolution, Ethernet speed, audio codec/output, USB port count and connector types, storage arrangement, and enclosure are not fixed here. These should be recorded in the hardware requirements as the design is refined.
+This scope defines the required user-facing capabilities, not the final implementation of every interface. The display standard and resolution, Ethernet link speed, audio codec and connector, USB port count and connector types, storage arrangement, and enclosure are not fixed here. These should be recorded in the hardware requirements as the design is refined.
 
 Earlier BeagleBone Black, Buildroot, Bluetooth study, and test application files remain in the repository as project history or learning material; they are not all part of the target SBC's required feature set.
 
